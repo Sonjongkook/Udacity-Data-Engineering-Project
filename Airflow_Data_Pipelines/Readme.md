@@ -38,6 +38,9 @@ Need to build four different operators that will stage the data, transform the d
 
 ## Create Table Operator
 
+The talbe operator is expected to create tables in redshift which includes staging tables and fact table and dimensional tables. To make this operatro idempotent, it deletes
+tables if it already exists. 
+
 ## Stage Operator
 
 The stage operator is expected to be able to load any JSON and CSV formatted files from S3 to Amazon Redshift. The operator creates and runs a SQL COPY statement based on the parameters provided. The operator's parameters should specify where in S3 the file is loaded and what is the target table.
@@ -53,3 +56,9 @@ Provided SQL Helper class will help to run data transformations. Most of the log
 The final operator to create is the data quality operator, which is used to run checks on the data itself. The operator's main functionality is to receive one or more SQL based test cases along with the expected results and execute the tests. For each the test, the test result and expected result needs to be checked and if there is no match, the operator should raise an exception and the task should retry and fail eventually.
 
 For example one test could be a SQL statement that checks if certain column contains NULL values by counting all the rows that have NULL in the column. We do not want to have any NULLs so expected result would be 0 and the test would compare the SQL statement's outcome to the expected result.
+
+## Output(All tasks are succesfully implemented and datas are succesfully loaded from s3 to redshift)
+![](https://github.com/Sonjongkook/Udacity-Data-Engineering-Project/blob/main/Airflow_Data_Pipelines/airflow/image/1.PNG)
+![](https://github.com/Sonjongkook/Udacity-Data-Engineering-Project/blob/main/Airflow_Data_Pipelines/airflow/image/2.PNG)
+![](https://github.com/Sonjongkook/Udacity-Data-Engineering-Project/blob/main/Airflow_Data_Pipelines/airflow/image/3.PNG)
+
